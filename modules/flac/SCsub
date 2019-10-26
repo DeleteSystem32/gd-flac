@@ -1,0 +1,20 @@
+#!/usr/bin/env python
+
+Import('env')
+Import('env_modules')
+
+env_flac = env_modules.Clone()
+#env_flac.Append(CPPPATH=["#thirdparty/flac"])
+
+# Thirdparty source files
+thirdparty_sources = []#["#thirdparty/flac/flac.h"]
+
+env_thirdparty = env_flac.Clone()
+env_thirdparty.disable_warnings()
+env_thirdparty.add_source_files(env.modules_sources, thirdparty_sources)
+
+# Godot's own source files
+env_flac.add_source_files(env.modules_sources, "*.cpp")
+
+#env_flac.Append(CCFLAGS=['-O2']) # Flags for C and C++ code
+env_flac.Append(CXXFLAGS=['-std=c++11']) # Flags for C++ code only
