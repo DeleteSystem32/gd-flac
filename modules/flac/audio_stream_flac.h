@@ -22,8 +22,6 @@ class AudioStreamPlaybackFLAC : public AudioStreamPlaybackResampled {
 
 	Ref<AudioStreamFLAC> flac_stream;
 
-	//void populate_first_frame(int, mp3dec_frame_info_t *);
-
 protected:
 	virtual void _mix_internal(AudioFrame *p_buffer, int p_frames);
 	virtual float get_stream_sampling_rate();
