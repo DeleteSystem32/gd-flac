@@ -93,6 +93,7 @@ void AudioStreamPlaybackFLAC::seek(float p_time) {
 
 AudioStreamPlaybackFLAC::~AudioStreamPlaybackFLAC() {
 	if (pFlac) {
+		//AudioServer::get_singleton()->audio_data_free(pFlac);
 		pFlac = NULL;
 	}
 }
