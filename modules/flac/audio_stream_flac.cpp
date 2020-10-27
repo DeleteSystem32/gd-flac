@@ -13,7 +13,7 @@ void AudioStreamPlaybackFLAC::_mix_internal(AudioFrame *p_buffer, int p_frames) 
 	int start_buffer = 0;
 	
 	while (todo && active) {
-		float* pSamples = (float*)AudioServer::get_singleton()->audio_data_alloc(todo * pFlac->channels * sizeof(float));
+		float* pSamples = (float*)memalloc(todo * pFlac->channels * sizeof(float));
 		float *buffer = (float *)p_buffer;
 		if (start_buffer > 0) {
 			buffer = (buffer + start_buffer * 2);
@@ -43,7 +43,7 @@ void AudioStreamPlaybackFLAC::_mix_internal(AudioFrame *p_buffer, int p_frames) 
 				todo = 0;
 			}
 		}
-		AudioServer::get_singleton()->audio_data_free(pSamples);
+		memfree(pSamples);
 	}
 
 	
@@ -127,19 +127,19 @@ String AudioStreamFLAC::get_stream_name() const {
 
 void AudioStreamFLAC::clear_data() {
 	if (data) {
-		AudioServer::get_singleton()->audio_data_free(data);
+		memfree(data);
 		data = NULL;
 		data_len = 0;
 	}
 }
 
-void AudioStreamFLAC::set_data(const PoolVector<uint8_t> &p_data) {
+void AudioStreamFLAC::set_data(const Vector<uint8_t> &p_data) {
 
 	int src_data_len = p_data.size();
 
-	PoolVector<uint8_t>::Read src_datar = p_data.read();
+	const uint8_t* src_datar = p_data.ptr();
 
-	drflac *pflac = drflac_open_memory(src_datar.ptr(), src_data_len);
+	drflac *pflac = drflac_open_memory(src_datar, src_data_len);
 
 	channels = pflac->channels;
 	sample_rate = pflac->sampleRate;
@@ -147,19 +147,20 @@ void AudioStreamFLAC::set_data(const PoolVector<uint8_t> &p_data) {
 
 	clear_data();
 
-	data = AudioServer::get_singleton()->audio_data_alloc(src_data_len, src_datar.ptr());
+	data = memalloc(src_data_len);//AudioServer::get_singleton()->audio_data_alloc(src_data_len, src_datar.ptr());
+	copymem(data, src_datar, src_data_len);
 	data_len = src_data_len;
 }
 
-PoolVector<uint8_t> AudioStreamFLAC::get_data() const {
+Vector<uint8_t> AudioStreamFLAC::get_data() const {
 
-	PoolVector<uint8_t> vdata;
+	Vector<uint8_t> vdata;
 
 	if (data_len && data) {
 		vdata.resize(data_len);
 		{
-			PoolVector<uint8_t>::Write w = vdata.write();
-			copymem(w.ptr(), data, data_len);
+			uint8_t* w = vdata.ptrw();
+			copymem(w, data, data_len);
 		}
 	}
 
@@ -199,9 +200,9 @@ void AudioStreamFLAC::_bind_methods() {
 	ClassDB::bind_method(D_METHOD("set_loop_offset", "seconds"), &AudioStreamFLAC::set_loop_offset);
 	ClassDB::bind_method(D_METHOD("get_loop_offset"), &AudioStreamFLAC::get_loop_offset);
 
-	ADD_PROPERTY(PropertyInfo(Variant::POOL_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR), "set_data", "get_data");
+	ADD_PROPERTY(PropertyInfo(Variant::PACKED_BYTE_ARRAY, "data", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR), "set_data", "get_data");
 	ADD_PROPERTY(PropertyInfo(Variant::BOOL, "loop", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR), "set_loop", "has_loop");
-	ADD_PROPERTY(PropertyInfo(Variant::REAL, "loop_offset", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR), "set_loop_offset", "get_loop_offset");
+	ADD_PROPERTY(PropertyInfo(Variant::FLOAT, "loop_offset", PROPERTY_HINT_NONE, "", PROPERTY_USAGE_NOEDITOR), "set_loop_offset", "get_loop_offset");
 }
 
 AudioStreamFLAC::AudioStreamFLAC() {

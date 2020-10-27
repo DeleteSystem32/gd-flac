@@ -43,7 +43,7 @@ String ResourceImporterFLAC::get_preset_name(int p_idx) const {
 void ResourceImporterFLAC::get_import_options(List<ImportOption> *r_options, int p_preset) const {
 
 	r_options->push_back(ImportOption(PropertyInfo(Variant::BOOL, "loop"), true));
-	r_options->push_back(ImportOption(PropertyInfo(Variant::REAL, "loop_offset"), 0));
+	r_options->push_back(ImportOption(PropertyInfo(Variant::FLOAT, "loop_offset"), 0));
 }
 
 Error ResourceImporterFLAC::import(const String &p_source_file, const String &p_save_path, const Map<StringName, Variant> &p_options, List<String> *r_platform_variants, List<String> *r_gen_files, Variant *r_metadata) {
@@ -57,11 +57,11 @@ Error ResourceImporterFLAC::import(const String &p_source_file, const String &p_
 
 	size_t len = f->get_len();
 
-	PoolVector<uint8_t> data;
+	Vector<uint8_t> data;
 	data.resize(len);
-	PoolVector<uint8_t>::Write w = data.write();
+	uint8_t* w = data.ptrw();
 
-	f->get_buffer(w.ptr(), len);
+	f->get_buffer(w, len);
 
 	memdelete(f);
 

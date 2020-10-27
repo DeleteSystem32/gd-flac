@@ -25,18 +25,18 @@ class AudioStreamPlaybackFLAC : public AudioStreamPlaybackResampled {
 	//void populate_first_frame(int, mp3dec_frame_info_t *);
 
 protected:
-	virtual void _mix_internal(AudioFrame *p_buffer, int p_frames);
-	virtual float get_stream_sampling_rate();
+	virtual void _mix_internal(AudioFrame *p_buffer, int p_frames) override;
+	virtual float get_stream_sampling_rate() override;
 
 public:
-	virtual void start(float p_from_pos = 0.0);
-	virtual void stop();
-	virtual bool is_playing() const;
+	virtual void start(float p_from_pos = 0.0) override;
+	virtual void stop() override;
+	virtual bool is_playing() const override;
 
-	virtual int get_loop_count() const; //times it looped
+	virtual int get_loop_count() const override; //times it looped
 
-	virtual float get_playback_position() const;
-	virtual void seek(float p_time);
+	virtual float get_playback_position() const override;
+	virtual void seek(float p_time) override;
 
 	AudioStreamPlaybackFLAC() {}
 	~AudioStreamPlaybackFLAC();
@@ -70,13 +70,13 @@ public:
 	void set_loop_offset(float p_seconds);
 	float get_loop_offset() const;
 
-	virtual Ref<AudioStreamPlayback> instance_playback();
-	virtual String get_stream_name() const;
+	virtual Ref<AudioStreamPlayback> instance_playback() override;
+	virtual String get_stream_name() const override;
 
-	void set_data(const PoolVector<uint8_t> &p_data);
-	PoolVector<uint8_t> get_data() const;
+	void set_data(const Vector<uint8_t> &p_data);
+	Vector<uint8_t> get_data() const;
 
-	virtual float get_length() const; //if supported, otherwise return 0
+	virtual float get_length() const override; //if supported, otherwise return 0
 
 	AudioStreamFLAC();
 	virtual ~AudioStreamFLAC();
