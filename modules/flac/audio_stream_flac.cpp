@@ -143,7 +143,7 @@ void AudioStreamFLAC::set_data(const PoolVector<uint8_t> &p_data) {
 
 	channels = pflac->channels;
 	sample_rate = pflac->sampleRate;
-	length = ((float(pflac->totalPCMFrameCount) * float(channels)) / float(sample_rate)) / float(channels);
+	length = float(pflac->totalPCMFrameCount) / float(sample_rate);
 
 	clear_data();
 
