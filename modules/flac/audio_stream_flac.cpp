@@ -106,7 +106,7 @@ Ref<AudioStreamPlayback> AudioStreamFLAC::instance_playback() {
 	flacs.instance();
 	flacs->flac_stream = Ref<AudioStreamFLAC>(this);
 
-	flacs->pFlac = drflac_open_memory(data, data_len);
+	flacs->pFlac = drflac_open_memory(data, data_len, NULL);
 
 	flacs->frames_mixed = 0;
 	flacs->active = false;
@@ -139,11 +139,11 @@ void AudioStreamFLAC::set_data(const PoolVector<uint8_t> &p_data) {
 
 	PoolVector<uint8_t>::Read src_datar = p_data.read();
 
-	drflac *pflac = drflac_open_memory(src_datar.ptr(), src_data_len);
+	drflac *pflac = drflac_open_memory(src_datar.ptr(), src_data_len, NULL);
 
 	channels = pflac->channels;
 	sample_rate = pflac->sampleRate;
-	length = (float(pflac->totalSampleCount) / float(sample_rate)) / float(channels);
+	length = float(pflac->totalPCMFrameCount) / float(sample_rate);
 
 	clear_data();
 

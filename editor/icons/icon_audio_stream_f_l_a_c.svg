@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="16"
+   viewBox="0 0 16 16"
+   width="16"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="icon_audio_stream_f_l_a_c.svg"
+   inkscape:version="1.0.1 (3bc2e813f5, 2020-09-07)">
+  <metadata
+     id="metadata17">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs15" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     id="namedview13"
+     showgrid="false"
+     inkscape:zoom="26.5625"
+     inkscape:cx="6.4750822"
+     inkscape:cy="5.8484192"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11" />
+  <linearGradient
+     id="a"
+     gradientUnits="userSpaceOnUse"
+     x1="8"
+     x2="8"
+     y1="1"
+     y2="15">
+    <stop
+       offset="0"
+       stop-color="#ff7a7a"
+       id="stop2"
+       style="stop-color:#dd0000;stop-opacity:1" />
+    <stop
+       offset=".5"
+       stop-color="#e1dc7a"
+       id="stop4"
+       style="stop-color:#d9d256;stop-opacity:1" />
+    <stop
+       offset="1"
+       stop-color="#66ff9e"
+       id="stop6"
+       style="stop-color:#00e855;stop-opacity:1" />
+  </linearGradient>
+  <path
+     d="m 11.971,1.002 c -0.08326,0.00207 -0.16593,0.014541 -0.24609,0.037109 l -7,2 C 4.2961,3.161979 4.00051,3.553979 4.0003,4.000049 v 5.5508 C 3.83576,9.51717 3.66825,9.500157 3.5003,9.500068 c -1.3807,0 -2.5,1.1193 -2.5,2.5 -4.8e-6,1.3807 1.1193,2.5 2.5,2.5 1.3456,-0.0013 2.4488,-1.0674 2.4961,-2.4121 0.00259,-0.02923 0.00389,-0.05855 0.00391,-0.08789 v -7.2441 l 5,-1.4277 v 3.1719 l 2,-1 v -3.5 c -9.16e-4,-0.56314 -0.4664,-1.0145 -1.0293,-0.99805 z m -1.9707,9.521157 V 13.5 c 0.54636,0 0.517513,0 1,0 v -2.976843 z m 2,-2.143157 v 4.12 c 0.505626,0 0.532952,0 1,0 V 8.38 Z m -4,0.7490447 V 11.5 c 0.5322425,0 0.5718157,0 1,0 V 9.1290447 Z m 6,0.5057894 0,1.8651659 c 0.468171,0 0.466488,0 1,0 l 0,-1.8651659 z"
+     fill="url(#a)"
+     id="path9"
+     sodipodi:nodetypes="ccccccccccccccccccccccccccccccccccccc" />
+</svg>
