@@ -135,7 +135,7 @@ AudioStreamPlaybackFLAC::~AudioStreamPlaybackFLAC() {
 Ref<AudioStreamPlayback> AudioStreamFLAC::instantiate_playback() {
 	Ref<AudioStreamPlaybackFLAC> flacs;
 
-	ERR_FAIL_COND_V(data.is_empty(), flacs,
+	ERR_FAIL_COND_V_MSG(data.is_empty(), flacs,
 			"This AudioStreamFLAC does not have an audio file assigned "
 			"to it. AudioStreamFLAC should not be created from the "
 			"inspector or with `.new()`. Instead, load an audio file.");
